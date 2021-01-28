@@ -38,9 +38,9 @@ class OrderDetailsRepository extends ServiceEntityRepository
                     ->addSelect('client')
                 ;
 
-                $result = $qb->getQuery()->getResult();
 
-        return $result;
+
+        return $qb->getQuery()->getResult();
     }
     public function findByDay()
     {
@@ -56,10 +56,10 @@ class OrderDetailsRepository extends ServiceEntityRepository
                     ->addSelect('client')
         ;
 //dd( new \DateTime('today'));
-        $result = $qb->getQuery()->getResult();
+        
 
 
-        return $result;
+        return $qb->getQuery()->getResult();
     }
 
 
