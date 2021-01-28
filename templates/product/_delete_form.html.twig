@@ -1,0 +1,18 @@
+<form method="post" action="" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+
+
+    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+        <i class="material-icons">close</i>
+                <div class="ripple-container">
+                </div>
+    </button>
+
+{#    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">#}
+{#        <i class="material-icons">close</i>#}
+{#        <div class="ripple-container">#}
+{#            #}
+{#        </div>#}
+{#    </button>#}
+</form>

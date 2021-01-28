@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}Product index{% endblock %}
+
+    {% block content %}
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('pharmacy') }}">Accueil</a></li>
+            <li class="breadcrumb-item active"> commande</li>
+            <li class="breadcrumb-item active">Preparation de commande</li>
+        </ol>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title "> Preparation de commande</h4>
+                            <p class="card-category"> Retrouver les produit que vous avez ajouter a votre commande</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead class="text-info">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% set total=null %}
+
+                                    {% for product in commande %}
+
+                                        <tr>
+                                            <td>{{ product.product.id }}</td>
+                                            <td>{{ product.product.name }}</td>
+
+                                            <td><a href="{{ path('increased_quantity',{'id': product.product.id }) }}">
+                                                    <span class="material-icons qt ">add</span>
+                                                </a>
+
+                                                <span class="badge badge-pill badge-info">× {{ product.quantity }}</span>
+
+                                                <a href="{{ path('decrease_precommande',{'id': product.product.id }) }}">
+                                                    <span class="material-icons qt">remove</span>
+                                                </a>
+                                            </td>
+                                            <td>{{ product.product.price }} Fc</td>
+                                            <td>{{ (product.product.price * product.quantity) }} Fc</td>
+                                            <td>
+                                                <a href="{{ path('delete_precommande',{'id': product.product.id}) }}">
+
+                                                    <span class="material-icons " style="color: #ff0000">delete</span>
+
+                                                </a>
+                                            </td>
+
+
+                                        </tr>
+                                        {% set total=total+ (product.product.price *product.quantity) %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p id="total2" class="text-right">
+                        <b>Nombre de Produit: </b> <span
+                                class="badge badge-pill badge-success">{{ commande|length }} </span><br>
+                        <b> Total de ma commande:</b><br><span
+                                class="badge badge-pill badge-success">{{ total }} Fc </span>
+                    </p>
+                    <a href="{{ path('my_order_new') }}" class="btn btn-info btn-lg btn-block">Finaliser commande</a>
+                </div>
+            </div>
+        </div>
+  {% endblock %}
+

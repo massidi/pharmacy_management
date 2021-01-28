@@ -1,0 +1,65 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class=" col-md-5">
+    {{ form_widget(form.name) }}
+    </div>
+    <div class="col-md-6">
+    {{ form_widget(form.address) }}
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-6">
+    {{ form_widget(form.amount) }}
+    </div>
+
+    <div class="col-md-6">
+    {{ form_widget(form.quantity_order) }}
+    </div>
+
+</div>
+
+
+
+<div class="container products" id="list_pro" data-prototype="{{ form_widget(form.products.vars.prototype)|e('html_attr') }}">
+
+    <button type="button" class="add_item_link btn btn-warning" data-collection-holder-class="products">Ajouter
+        Medicament
+    </button>
+
+    {% for product in form.products %}
+        <div class="row">
+           <div class="panel-header">bonjour</div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class=" col-md-5">
+                        {{ form(form.product.name) }}
+
+                    </div>
+                    <div class=" col-md-5">
+                        {{ form(form.product.address) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-5">
+                        {{ form(form.product.quantity) }}
+                    </div>
+                    <div class=" col-md-5">
+                        {{ form(form.product.quantity) }}
+                    </div>
+
+                </div>
+                <div class="row">
+                    {{ form_row(form.product.category) }}
+                </div>
+            </div></div>
+
+
+
+
+
+    {% endfor %}
+
+</div>
+<button class="btn btn-info btn-lg btn-block">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

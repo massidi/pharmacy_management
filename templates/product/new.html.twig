@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('pharmacy') }}">Accueil</a></li>
+        <li class="breadcrumb-item "><a href="{{ path('product_index') }}">Product</a></li>
+        <li class="breadcrumb-item active">nouveau médicament</li>
+    </ol>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+    <h1>Créer un nouveau médicament</h1>
+
+    {{ include('product/_form.html.twig') }}
+
+
+    <a href="{{ path('product_index') }}">back to list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

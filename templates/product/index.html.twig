@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('pharmacy') }}">Accueil</a></li>
+        <li class="breadcrumb-item active">Product</li>
+    </ol>
+
+    <div class="container-fluid">
+        <a href="{{ path('supplier_new') }}" class="btn btn-primary">Ajouter nouveau Medicaments</a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title "> Liste des Medicament</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table"
+                                   data-toggle="table"
+                                   data-search="true"
+                                   data-virtual-scroll="true"
+                                   data-show-columns="true">
+                                <thead class="text-info">
+                                <tr>
+                                    <th>#</th>
+                                    <th data-sortable="true">Name</th>
+                                    <th>Categorie</th>
+                                    <th data-sortable="false">Quantity</th>
+                                    <th data-sortable="false">Price</th>
+                                    <th></th>
+
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for product in products %}
+                                    <tr>
+                                        <td>{{ product.id }}</td>
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.category.name }}</td>
+
+                                        <td>{{ product.quantity }}</td>
+                                        <td>{{ product.price }}   <span class="badge badge-pill badge-success text-right">Fc</span></td>
+                                        <td> <a href="{{ path('add_precommande' ,{'id': product.id}) }}">
+                                            <button class=" btn btn-info btn-sm" onclick="openDialog()">commander</button>
+                                            </a>
+                                        </td>
+
+                                        <td class="td-actions text-right">
+
+                                            {{ include('product/_delete_form.html.twig') }}
+
+                                            <a href="{{ path('product_edit', {'id': product.id}) }}" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+                               </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+
+{#    <script>#}
+{#        function openDialog() {#}
+{#            var xhttp = new XMLHttpRequest();#}
+{#            xhttp.onreadystatechange = function() {#}
+{#                if (this.readyState == 4 && this.status == 200) {#}
+{#                    console.log(bonjour)#}
+{#                    // document.getElementById("demo").innerHTML = this.responseText;#}
+{#                }#}
+{#            };#}
+{#            xhttp.open("GET", "{{ add_precommande }}", true);#}
+{#            xhttp.send();#}
+{#        }#}
+{#    </script>#}
+{% endblock %}

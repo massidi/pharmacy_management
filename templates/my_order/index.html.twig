@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MyOrderController!{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('pharmacy') }}">Accueil</a></li>
+        <li class="breadcrumb-item active"> commande</li>
+        <li class="breadcrumb-item"><a href="{{ path('precommande') }}">Preparation de Commande</a></li>
+        <li class="breadcrumb-item active">payment commande</li>
+    </ol>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title "> payment commande accepter</h4>
+                        <p class="card-category"> Merci </p>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="alert alert-info alert-with-icon" data-notify="container">
+                            <i class="material-icons" data-notify="icon">add_alert</i>
+                            <div class="container">
+
+                                <span data-notify="message">
+                                {% for order in orderDetail %}
+{{ dump(order) }}
+                                    {% endfor %}
+                            </span>
+                            </div>
+
+
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MyOrderController!{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('pharmacy') }}">Accueil</a></li>
+        <li class="breadcrumb-item active"> commande</li>
+        <li class="breadcrumb-item"><a href="{{ path('precommande') }}">Preparation de Commande</a></li>
+        <li class="breadcrumb-item active">payment commande</li>
+    </ol>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title "> Payment commande</h4>
+                        <p class="card-category"> Etes-vous pret à livrer la commande </p>
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="alert alert-info alert-with-icon" data-notify="container">
+                            <i class="material-icons" data-notify="icon">add_alert</i>
+                            <div class="container">
+
+                                <span data-notify="message">
+                                 {% set total=null %}
+                                    {% for commande in commande %}
+                                        <div class="row">
+                                        <p> {{ commande.quantity }}  <b>{{ commande.product.name }}</b>  </p>
+                                    </div>
+
+                                        {% set total=total+(commande.quantity *commande.product.price) %}
+
+                                    {% endfor %}
+                                <p class="text-center">
+                                    <b>Nombre de Produit: </b> {{ commande|length }}<br>
+                                    <b> Total de ma commande:</b> {{ total }} Fc
+                                </p >
+                            </span>
+                            </div>
+
+
+                        </div>
+                        {{ form_start(form) }}
+
+{#                        {{ form_widget(form) }}#}
+{#                        <button class="btn btn-success btn-lg btn-block">{{ button_label|default('Payment') }}</button>#}
+{#                        <a href="{{ path('my_order',{'id': orderDetail}) }}" class="btn btn-info btn-lg btn-block">Finaliser commande</a>#}
+
+{#                        {{ form_end(form) }}#}
+
+
+
+
+                            <div class="col-md-12 mt-4">
+                                <p class="text-left mb-0"><b> Client Information:</b></p>
+                                <div class="row">
+                                    <div class=" col-md-5">
+                                        {{ form_widget(form.name) }}
+
+                                    </div>
+                                    <div class=" col-md-5">
+
+                                        {{ form(form.address) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-md-5">
+                                        {{ form_widget(form.paymentMode) }}
+                                    </div>
+                                    <div class=" col-md-5">
+                                        {{ form_widget(form.email) }}
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class=" col-md-5">
+                                    {{ form_widget(form.phone_number) }}
+                                </div>
+                                </div>
+
+                                <button class="btn btn-success btn-lg btn-block" onclick="md.showNotification('top','left')" type="submit">
+                                    {{ button_label|default('Payment') }}
+                                    <div class="ripple-container"></div>
+                                </button>
+
+                                {{ form_end(form) }}
+
+
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+{% endblock %}

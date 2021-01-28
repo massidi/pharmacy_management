@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supplier index{% endblock %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+        <a href="{{ path('supplier_new') }}"class="btn btn-primary">creér nouveau fournisseur</a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Simple Table</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Quantity_order</th>
+                                    <th>Amount</th>
+                                    <th>actions</th>
+                                </tr></thead>
+                                <tbody>
+                                {% for supplier in suppliers %}                                    <tr>
+                                        <td>{{ supplier.id }}</td>
+                                        <td>{{ supplier.name }}</td>
+                                        <td>{{ supplier.address }}</td>
+                                        <td>{{ supplier.quantityOrder }}</td>
+                                        <td>{{ supplier.amount }}</td>
+                                        <td>
+                                            <a href="{{ path('supplier_show', {'id': supplier.id}) }}">show</a>
+                                            <a href="{{ path('supplier_edit', {'id': supplier.id}) }}">edit</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
